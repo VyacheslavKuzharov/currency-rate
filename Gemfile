@@ -18,6 +18,7 @@ gem 'redis', '~> 4.0'
 
 # Backend
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 # API
 gem 'faraday'

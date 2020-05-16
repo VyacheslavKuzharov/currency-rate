@@ -11,5 +11,10 @@
 # http://www.mikeperham.com/2013/11/13/advanced-sidekiq-host-specific-queues/
 :queues:
   - hight
-  - standard
+  - default
   - low
+
+:schedule:
+  usd_currency:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: FetchUsdCurrencyJob
