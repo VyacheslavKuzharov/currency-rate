@@ -43,6 +43,7 @@ group :development do
 end
 
 group :test do
+  gem 'action-cable-testing'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers'

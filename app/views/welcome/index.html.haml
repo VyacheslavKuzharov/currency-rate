@@ -14,6 +14,8 @@
         .card-body
           %h1.card-title.pricing-card-title
             $1
-            %small.text-muted / #{number_to_currency(@currency&.amount, unit: '₽', precision: 2, format: '%n%u')}
+            %small.text-muted /
+            %span#rubles_amount= number_to_currency(@currency&.amount, unit: '', precision: 2, format: '%n%u')
+            %span ₽
           %ul.list-unstyled.mt-3.mb-4
             %li= Time.zone.now.strftime('%F')

@@ -6,7 +6,7 @@
 require('../app');
 
 require("@rails/ujs").start();
-require("channels");
+require("../channels");
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
