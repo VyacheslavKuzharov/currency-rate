@@ -61,4 +61,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # Filter out all gems from the backtrace. Use `--backtrace` to bring it back
+  config.backtrace_exclusion_patterns << /.*gems.*/
 end
