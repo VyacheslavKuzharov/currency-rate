@@ -22,6 +22,7 @@
 /storage/*
 !/storage/.keep
 
+/spec/examples.txt
 /public/assets
 .byebug_history
 
