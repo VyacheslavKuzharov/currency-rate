@@ -16,7 +16,7 @@ class CbrClient
   end
 
   def usd_rate
-    daily_list['Valute']['USD']
+    daily_list['Valute']['USD']['Value']
   end
 
   private

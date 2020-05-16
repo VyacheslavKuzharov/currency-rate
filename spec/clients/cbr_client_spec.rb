@@ -16,9 +16,9 @@ RSpec.describe CbrClient do
 
   it 'fetched usd rate' do
     VCR.use_cassette('daily_list') do
-      res = subject.usd_rate
+      usd = subject.usd_rate
 
-      expect(res['ID']).to eq('R01235')
+      expect(usd).to eq(73.2056)
     end
   end
 end

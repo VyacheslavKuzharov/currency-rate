@@ -17,4 +17,4 @@
 :schedule:
   usd_currency:
     cron: '0 * * * * *'   # Runs once per minute
-    class: FetchUsdCurrencyJob
+    class: FetchCurrencyJob

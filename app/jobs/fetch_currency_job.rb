@@ -3,11 +3,11 @@
 require 'sidekiq-scheduler'
 require 'clients/cbr_client'
 
-class FetchUsdCurrencyJob
+class FetchCurrencyJob
   include Sidekiq::Worker
   sidekiq_options queue: :default
 
-  def perform
-    puts 'worker howdy!'
+  def perform(name = 'usd')
+    CurrencyService.new(name).call
   end
 end
