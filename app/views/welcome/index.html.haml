@@ -14,6 +14,6 @@
         .card-body
           %h1.card-title.pricing-card-title
             $1
-            %small.text-muted / 73.21
+            %small.text-muted / #{number_to_currency(@currency&.amount, unit: '₽', precision: 2, format: '%n%u')}
           %ul.list-unstyled.mt-3.mb-4
-            %li 15.05.2020
+            %li= Time.zone.now.strftime('%F')
