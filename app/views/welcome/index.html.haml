@@ -1,4 +1,18 @@
+.pricing-header.px-3.py-3.pt-md-5.pb-md-4.mx-auto.text-center
+  %h1.display-4 Currency Rate
+  %p.lead
+    Example application to detect dollar's rate via api request to https://www.cbr-xml-daily.ru.
+    It's built with default Bootstrap components and utilities with little customization.
+
 .container
   .row
-    .col
-      %h1.qwerty howdy!
+    .card-deck.mb-3.text-center
+      .card.mb-4.box-shadow
+        .card-header
+          %h4.my-0.font-weight-normal USD
+        .card-body
+          %h1.card-title.pricing-card-title
+            $1
+            %small.text-muted / 73.21
+          %ul.list-unstyled.mt-3.mb-4
+            %li 15.05.2020
