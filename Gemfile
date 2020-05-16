@@ -16,6 +16,8 @@ gem 'webpacker', '~> 4.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
+# API
+gem 'faraday'
 # UI
 gem 'hamlit'
 
@@ -24,9 +26,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'vcr', '~> 5.1'
 end
 
 group :development do
+  gem 'foreman'
   gem 'listen', '~> 3.2'
   gem 'rubocop', '~> 0.83.0', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
