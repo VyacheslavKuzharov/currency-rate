@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 require('../app');
+require('../init/flashFadeOut');
 
 require("@rails/ujs").start();
 require("../channels");
