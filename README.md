@@ -1,3 +1,6 @@
+# Description
+A test project to parse and print Currency Rate on web page.
+
 # Dependencies
 - Postgresql
 - Redis
@@ -6,9 +9,7 @@
 - Webpack 4
 - [Stimulus.js](https://stimulusjs.org/)
 
-# Description
 
-A test project to parse and print Currency Rate on web page.
 # Development
 * Clone the App repo:
 
@@ -16,9 +17,12 @@ A test project to parse and print Currency Rate on web page.
 git clone git@github.com:VyacheslavKuzharov/currency-rate.git && cd ./currency-rate
 ```
 
-Standard Rails setup(bundle install, rails db:create, rails db:migrate).
+Standard Rails project setup:
+1) bundle install
+2) rails db:create
+3) rails db:migrate
 
-To run Dev Server and all processes use: 
+To run Dev Server and all processes use command: 
 ``` sh
 foreman start
 ```
