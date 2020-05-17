@@ -2,6 +2,28 @@
 
 module Admin
   class DashboardController < BaseController
-    def index; end
+    def index
+      @currency = Currency.find_by(name: 'usd')
+      @currency_form = CurrencyForm.new(@currency)
+    end
+
+    def create
+      @currency = Currency.find(params[:currency][:currency_id])
+      @forced_currencies = @currency.forced_currencies.order(created_at: :desc)
+
+      @currency_form = CurrencyForm.new(@currency)
+
+      if @currency_form.submit(currency_params)
+        redirect_to admin_path, notice: 'Currency updated!'
+      else
+        render 'index'
+      end
+    end
+
+    private
+
+    def currency_params
+      params.require(:currency).permit(:amount, :dead_line, :currency_id)
+    end
   end
 end

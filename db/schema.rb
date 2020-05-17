@@ -10,16 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_144021) do
+ActiveRecord::Schema.define(version: 2020_05_17_085118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "currencies", force: :cascade do |t|
     t.string "name"
-    t.decimal "amount", null: false
+    t.decimal "amount", precision: 8, scale: 2, null: false
+    t.boolean "forced", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "forced_currencies", force: :cascade do |t|
+    t.bigint "currency_id"
+    t.decimal "amount", precision: 8, scale: 2, null: false
+    t.datetime "dead_line", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["currency_id"], name: "index_forced_currencies_on_currency_id"
   end
 
 end

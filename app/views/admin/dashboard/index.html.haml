@@ -1,20 +1,31 @@
 - form = "admin--dashboard--form"
 
+.row
+  .col
+    - if @currency_form.errors.any?
+      = render 'shared/errors', resource: @currency_form
 .row{data: { controller: form }}
   .col-md-6
     .card
       .card-body
-        = form_with url: 'some/url', local: true, html: { novalidate: true }, data: { target: "#{form}.form", action: "submit->#{form}#submitForm" } do |f|
-          .form-group.row
-            = f.label :amount, class: 'col-sm-2 col-form-label'
+        = form_with model: @currency_form,
+                    url: admin_currency_forced_path,
+                    scope: 'currency',
+                    local: true,
+                    html: { novalidate: true },
+                    data: { target: "#{form}.form", action: "submit->#{form}#submitForm" } do |f|
+
+          = f.hidden_field :currency_id, value: @currency&.id
+          .form-group
+            = f.label :amount
             .col-sm-10
-              = f.text_field :amount, required: true, pattern: '\d+(\.\d{2})?',  class: 'form-control'
+              = f.text_field :amount, required: true, pattern: currency_amount_regexp,  class: 'form-control'
               .error-message.text-danger
-          .form-group.row
-            = f.label :end_time, 'Forced date', class: 'col-sm-2 col-form-label'
+          .form-group
+            = f.label :end_time, 'Forced date'
             .col-sm-10
-              = f.text_field :end_time, required: true, data: { behaviour: 'flatpickr', min_date: 'today' }, class: 'form-control'
+              = f.text_field :dead_line, required: true, data: { behaviour: 'flatpickr', min_date: 'today' }, class: 'form-control'
               .error-message.text-danger
-          .form-group.row
+          .form-group
             .col-sm-10
-              = f.submit class: 'btn btn-primary', data: { disable_with: false }
+              = f.submit 'Submit', class: 'btn btn-primary', data: { disable_with: false }

@@ -9,17 +9,17 @@ export default class FormController extends Controller {
         flatpickr("[data-behaviour='flatpickr']", {
             altInput: true,
             altFormat: "F j, Y",
-            dateFormat: "Y-m-d",
+            dateFormat: "Y-m-d H:i",
             enableTime: true,
             time_24hr: true
         });
     }
 
     submitForm(e) {
-        let isValid = this.validateForm(this.formTarget);
-
-        // If our form is invalid, prevent default on the event
-        if (!isValid) e.preventDefault();
+        // let isValid = this.validateForm(this.formTarget);
+        //
+        // // If our form is invalid, prevent default on the event
+        // if (!isValid) e.preventDefault();
     }
 
     validateForm() {

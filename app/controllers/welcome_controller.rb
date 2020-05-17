@@ -2,6 +2,6 @@
 
 class WelcomeController < ApplicationController
   def index
-    @currency = Currency.first
+    @currency = Currency.find_by(name: 'usd')
   end
 end
