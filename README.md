@@ -1,24 +1,25 @@
-# README
+# Dependencies
+- Postgresql
+- Redis
+- Node.js
+- Yarn
+- Webpack 4
+- [Stimulus.js](https://stimulusjs.org/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Description
 
-Things you may want to cover:
+A test project to parse and print Currency Rate on web page.
+# Development
+* Clone the App repo:
 
-* Ruby version
+```
+git clone git@github.com:VyacheslavKuzharov/currency-rate.git && cd ./currency-rate
+```
 
-* System dependencies
+Standard Rails setup(bundle install, rails db:create, rails db:migrate).
 
-* Configuration
+To run Dev Server and all processes use: 
+``` sh
+foreman start
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

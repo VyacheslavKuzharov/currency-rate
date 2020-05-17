@@ -33,7 +33,7 @@ RSpec.describe CurrencyService do
     it 'updates record' do
       VCR.use_cassette('daily_list') do
         subject.call
-        expect(Currency.first.amount).to eq(73.2056)
+        expect(Currency.first.amount.to_f).to eq(73.21)
       end
     end
   end

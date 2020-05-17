@@ -8,7 +8,7 @@ module Admin
     end
 
     def create
-      @currency = Currency.find(params[:currency][:currency_id])
+      @currency = Currency.find_by(id: params[:currency][:currency_id])
       @currency_form = CurrencyForm.new(@currency)
 
       if @currency_form.submit(currency_params)

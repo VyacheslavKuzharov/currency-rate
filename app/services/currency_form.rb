@@ -45,7 +45,11 @@ class CurrencyForm
   end
 
   def validate_time
-    if Time.parse(@currency.forced_data['dead_line']).past?
+    return errors.add(:base, 'currency not found!') if @currency.nil?
+
+    dead_line = @currency.forced_data['dead_line']
+
+    if dead_line.present? && Time.parse(dead_line).past?
       errors.add(:base, 'time cannot be past!')
     end
   end

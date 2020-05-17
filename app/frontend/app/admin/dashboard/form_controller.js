@@ -16,13 +16,13 @@ export default class FormController extends Controller {
     }
 
     submitForm(e) {
-        // let isValid = this.validateForm(this.formTarget);
-        //
-        // // If our form is invalid, prevent default on the event
-        // if (!isValid) e.preventDefault();
+        let isValid = this._validateForm(this.formTarget);
+
+        // If our form is invalid, prevent default on the event
+        if (!isValid) e.preventDefault();
     }
 
-    validateForm() {
+    _validateForm() {
         let isValid = true;
 
         let requiredFieldSelectors = 'input:required';
