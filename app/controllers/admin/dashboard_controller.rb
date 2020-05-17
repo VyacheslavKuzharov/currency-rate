@@ -9,8 +9,6 @@ module Admin
 
     def create
       @currency = Currency.find(params[:currency][:currency_id])
-      @forced_currencies = @currency.forced_currencies.order(created_at: :desc)
-
       @currency_form = CurrencyForm.new(@currency)
 
       if @currency_form.submit(currency_params)

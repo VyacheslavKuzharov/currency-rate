@@ -9,5 +9,7 @@
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   %body
-    .container
+    = render 'shared/header'
+    .container.main-content
+      = render 'shared/flash_messages'
       = yield

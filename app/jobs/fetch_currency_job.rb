@@ -8,8 +8,6 @@ class FetchCurrencyJob
   sidekiq_options queue: :default
 
   def perform(name = 'usd')
-    currency = Currency.find_by!(name: name)
-
-    CurrencyService.new(currency).call unless currency.forced
+    CurrencyService.new(name).call
   end
 end

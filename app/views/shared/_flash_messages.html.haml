@@ -1,0 +1,7 @@
+- flash.each do |type, message|
+  #flash-messages
+    %div{ class: "alert alert-#{flash_bs_class(type.to_sym)} alert-dismissible fade show", role: 'alert' }
+      %button.close{ data: { dismiss: 'alert' } }
+        %span{ aria: { hidden: true } } ×
+        %span.sr-only Close
+      = message

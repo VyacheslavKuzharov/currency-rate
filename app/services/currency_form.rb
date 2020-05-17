@@ -28,7 +28,6 @@ class CurrencyForm
     @dead_line = params[:dead_line]
 
     if valid?
-      ForcedCurrency.create(params)
       forced_currency_amount!
       true
     else
@@ -43,8 +42,8 @@ class CurrencyForm
   end
 
   def forced_currency_amount!
-    @currency.update(amount: amount, forced: true)
-    UnblockCurrencyJob.perform_in(forced_interval, @currency.id)
+    @currency.update(amount: amount, forced: true, forced_data: { amount: amount, dead_line: dead_line })
+    UnblockCurrencyJob.perform_in(forced_interval, @currency.name)
   end
 
   # Stay in system time zone for simplicity

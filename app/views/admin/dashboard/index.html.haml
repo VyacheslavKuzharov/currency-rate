@@ -1,6 +1,6 @@
 - form = "admin--dashboard--form"
 
-.row
+.row.mt-5
   .col
     - if @currency_form.errors.any?
       = render 'shared/errors', resource: @currency_form
@@ -17,14 +17,20 @@
 
           = f.hidden_field :currency_id, value: @currency&.id
           .form-group
-            = f.label :amount
+            = f.label :amount, 'Forced Amount'
             .col-sm-10
-              = f.text_field :amount, required: true, pattern: currency_amount_regexp,  class: 'form-control'
+              = f.text_field :amount, required: true,
+                                      pattern: currency_amount_regexp,
+                                      value: @currency.forced_data['amount'],
+                                      class: 'form-control'
               .error-message.text-danger
           .form-group
             = f.label :end_time, 'Forced date'
             .col-sm-10
-              = f.text_field :dead_line, required: true, data: { behaviour: 'flatpickr', min_date: 'today' }, class: 'form-control'
+              = f.text_field :dead_line, required: true,
+                                         data: { behaviour: 'flatpickr', min_date: 'today' },
+                                         value: @currency.forced_data['dead_line'],
+                                         class: 'form-control'
               .error-message.text-danger
           .form-group
             .col-sm-10

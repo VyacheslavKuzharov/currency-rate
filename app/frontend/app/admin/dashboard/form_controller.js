@@ -8,7 +8,7 @@ export default class FormController extends Controller {
     connect() {
         flatpickr("[data-behaviour='flatpickr']", {
             altInput: true,
-            altFormat: "F j, Y",
+            altFormat: "F j, Y H:i",
             dateFormat: "Y-m-d H:i",
             enableTime: true,
             time_24hr: true
