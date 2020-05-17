@@ -19,6 +19,8 @@ class CurrencyForm
             format: { with: TIMESTAMP_REGEXP, message: "it's not valid format!" },
             presence: true
 
+  validate :validate_time
+
   def initialize(currency)
     @currency = currency
   end
@@ -28,6 +30,7 @@ class CurrencyForm
     @dead_line = params[:dead_line]
 
     if valid?
+      cleanup_previous_job!
       forced_currency_amount!
       true
     else
@@ -41,9 +44,22 @@ class CurrencyForm
     errors.add(:base, 'currency not found!') if @currency.nil?
   end
 
+  def validate_time
+    if Time.parse(@currency.forced_data['dead_line']).past?
+      errors.add(:base, 'time cannot be past!')
+    end
+  end
+
+  def cleanup_previous_job!
+    return if @currency.nil?
+
+    Sidekiq::ScheduledSet.new.find_job(@currency.forced_data['jid'])&.delete
+  end
+
   def forced_currency_amount!
-    @currency.update(amount: amount, forced: true, forced_data: { amount: amount, dead_line: dead_line })
-    UnblockCurrencyJob.perform_in(forced_interval, @currency.name)
+    jid = UnblockCurrencyJob.perform_in(forced_interval, @currency.name)
+    @currency.update(amount: amount, forced: true, forced_data: { amount: amount, dead_line: dead_line, jid: jid })
+    ActionCable.server.broadcast 'notifications_channel', amount: amount
   end
 
   # Stay in system time zone for simplicity

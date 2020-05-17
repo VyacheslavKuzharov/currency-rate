@@ -10,7 +10,7 @@ class CurrencyService
 
   def call
     init_new_currency if currency.nil?
-    return if currency.forced
+    return if forced_in_progress?
 
     currency_amount = client.public_send("#{currency_name}_rate")
 
@@ -31,5 +31,11 @@ class CurrencyService
     currency.forced = false
     currency.save!
     ActionCable.server.broadcast 'notifications_channel', amount: currency.amount
+  end
+
+  def forced_in_progress?
+    return if currency.forced_data.blank?
+
+    currency.forced && Time.parse(currency.forced_data['dead_line']).future?
   end
 end

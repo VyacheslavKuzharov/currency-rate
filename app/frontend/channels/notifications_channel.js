@@ -13,6 +13,6 @@ consumer.subscriptions.create("NotificationsChannel", {
   // Called when there's incoming data on the websocket for this channel
   received(data) {
     const rublesAmount = document.getElementById('rubles_amount');
-    rublesAmount.insertAdjacentHTML('beforeend', data.amount);
+    rublesAmount.textContent = data.amount;
   }
 });
