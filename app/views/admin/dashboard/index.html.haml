@@ -1,3 +1,20 @@
-.row
-  .col-md-4
-    %h1.qwerty Admin howdy!
+- form = "admin--dashboard--form"
+
+.row{data: { controller: form }}
+  .col-md-6
+    .card
+      .card-body
+        = form_with url: 'some/url', local: true, html: { novalidate: true }, data: { target: "#{form}.form", action: "submit->#{form}#submitForm" } do |f|
+          .form-group.row
+            = f.label :amount, class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              = f.text_field :amount, required: true, pattern: '\d+(\.\d{2})?',  class: 'form-control'
+              .error-message.text-danger
+          .form-group.row
+            = f.label :end_time, 'Forced date', class: 'col-sm-2 col-form-label'
+            .col-sm-10
+              = f.text_field :end_time, required: true, data: { behaviour: 'flatpickr', min_date: 'today' }, class: 'form-control'
+              .error-message.text-danger
+          .form-group.row
+            .col-sm-10
+              = f.submit class: 'btn btn-primary', data: { disable_with: false }
